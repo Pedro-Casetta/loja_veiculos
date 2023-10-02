@@ -12,11 +12,12 @@ require_once "header_inc.php";
 
 ?>
 
-<div class="p-4 mb-4 bg-light">
-  <h1 class="display-5">Gerenciamento de Veículos</h1>
-  <hr class="my-3">
-  <p class="lead">Permite a inclusão, edição e exclusão dos veículos exibidos na página de veículos.</p>
-</div>
+
+<div class="container px-4 py-5" id="icon-grid">
+    <h2 class="pb-2 border-bottom">Gerenciamento de Veículos</h2>
+    <p>Permite a inclusão, edição e exclusão dos veículos exibidos na página de veículos.</p>
+    <br/>
+
 
 <div class="container">
   <a class="btn btn-success" href="Veiculo-insert.php">Cadastrar Novo Veículo</a>
@@ -33,6 +34,7 @@ require_once "header_inc.php";
       <th>Preço (R$)</th>
       <th>Detalhes</th>
       <th>Foto</th>
+      <th>Tipo</th>
       <th>Opções</th>
     </tr>
     <?php foreach($veiculos as $veiculo) { ?>
@@ -47,6 +49,7 @@ require_once "header_inc.php";
         <td class="table-light" style="width:10%"><?= $veiculo->__get('preco'); ?></td>
         <td class="table-light" style="width:10%"><?= $veiculo->__get('detalhes'); ?></td>
         <td class="table-light" style="width:10%"><?= $veiculo->__get('foto'); ?></td>
+        <td class="table-light" style="width:10%"><?= $veiculo->__get('tipo'); ?></td>
         <td class="table-light" style="width:10%">
           <a href="veiculo-edit.php?codigo=<?= $veiculo->__get('codigo'); ?>"><button type="button" class="btn btn-primary">Editar</button></a>
           <a href="veiculo-destroy.php?codigo=<?= $veiculo->__get('codigo'); ?>"><button type="button" class="btn btn-danger">Excluir</button>
@@ -54,6 +57,7 @@ require_once "header_inc.php";
       </tr>
     <?php } ?>
   </table>
+</div>
 </div>
 
 <?php require_once "footer_inc.php"; ?>

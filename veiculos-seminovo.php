@@ -3,7 +3,7 @@
 require "connection.php";
 require "classes/Veiculo.php";
 
-$sql = "SELECT * FROM veiculo";
+$sql = "SELECT * FROM veiculo where tipo = 'seminovo' ORDER BY marca, modelo";
 $resultado = $conn->query($sql);
 $veiculos = $resultado->fetchAll(PDO::FETCH_CLASS, "Veiculo");
 
@@ -12,7 +12,7 @@ require_once "header_inc.php";
 ?>
 
 <div class="container px-4 py-5" id="icon-grid">
-  <h2 class="pb-2 border-bottom">Estoque de Veículos</h2>
+  <h2 class="pb-2 border-bottom">Estoque de Veículos Seminovos</h2>
   <br/>
   <div class="container">
     <?php foreach($veiculos as $veiculo) { ?>
@@ -24,13 +24,14 @@ require_once "header_inc.php";
           </div>
           <div class="col-md-5">
             <figure class="figure">
-                <img src="images/<?= $veiculo->__get('foto'); ?>" class="figure-img img-fluid rounded" alt="Veículo <?= $veiculo->__get('marca'); ?> <?= $veiculo->__get('modelo'); ?> <?= $veiculo->__get('ano_modelo'); ?>" width="300" >
+                <img src="images/<?= $veiculo->__get('foto'); ?>" class="figure-img img-fluid rounded" alt="Veículo <?= $veiculo->__get('marca'); ?> <?= $veiculo->__get('modelo'); ?> <?= $veiculo->__get('ano_modelo'); ?>" width="300">
             </figure>
           </div>
         </div>
         <hr class="featurette-divider">
         <?php } ?>
       </div>
+
   </div>
 </div>
 

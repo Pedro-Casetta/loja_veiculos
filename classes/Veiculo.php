@@ -11,6 +11,9 @@ Class Veiculo {
     private float $preco;
     private string $detalhes;
     private string $foto;
+    private string $tipo;
+
+
 
     public function __get($atributo) {
         return $this->$atributo;

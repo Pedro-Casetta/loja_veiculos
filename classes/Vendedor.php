@@ -5,6 +5,8 @@ Class Vendedor {
     private string $nome;
     private string $email;
     private int $telefone;
+    private int $celular;
+    private string $foto;
 
     public function __get($atributo) {
         return $this->$atributo;

@@ -9,6 +9,9 @@ $combustivel = "";
 $preco = "";
 $detalhes = "";
 $foto = "";
+$tipo = "";
+
+
 $flag_msg = null;
 $msg = "";
 
@@ -25,12 +28,14 @@ if (isset($_POST["enviar"])) {
     $preco = $_POST['precoVeiculo'];
     $detalhes = $_POST['detalhesVeiculo'];
     $foto = $_POST["fotoVeiculo"];
+    $foto = $_POST["tipoVeiculo"];
+
     
     if (empty($_POST["marcaVeiculo"]) || empty($_POST["modeloVeiculo"]) || empty($_POST["fotoVeiculo"])) {
       $flag_msg = false; //Erro 
       $msg = "Dados incompletos, preencha o formulário corretamente!";
     } else {
-      $stmt = $conn->prepare("INSERT INTO veiculo (marca, modelo, cor, ano_fabricacao, ano_modelo, combustivel, preco, detalhes, foto) VALUES (:marca, :modelo, :cor, :ano_fabricacao, :ano_modelo, :combustivel, :preco, :detalhes, :foto)");
+      $stmt = $conn->prepare("INSERT INTO veiculo (marca, modelo, cor, ano_fabricacao, ano_modelo, combustivel, preco, detalhes, foto, tipo) VALUES (:marca, :modelo, :cor, :ano_fabricacao, :ano_modelo, :combustivel, :preco, :detalhes, :foto, :tipo)");
                               
       $stmt->bindParam(":marca", $marca, PDO::PARAM_STR);
       $stmt->bindParam(":modelo", $modelo, PDO::PARAM_STR);
@@ -41,6 +46,7 @@ if (isset($_POST["enviar"])) {
       $stmt->bindParam(":preco", $preco);
       $stmt->bindParam(":detalhes", $detalhes, PDO::PARAM_STR);
       $stmt->bindParam(":foto", $foto, PDO::PARAM_STR);
+      $stmt->bindParam(":tipo", $foto, PDO::PARAM_STR);
 
       $stmt->execute();
 
@@ -55,6 +61,7 @@ if (isset($_POST["enviar"])) {
       $preco = "";
       $detalhes = "";
       $foto = "";
+      $tipo = "";
     }
   } catch(PDOException $e) {
     $flag_msg = false; //Erro
@@ -67,12 +74,11 @@ if (isset($_POST["enviar"])) {
 require_once "header_inc.php"; ?>
 
 
-<div class="p-4 mb-4 bg-light">
-  <h1 class="display-5">Inclusao de Veículo</h1>
-  <hr class="my-3">
-  <p class="lead">Permite a inclusão dos Veículos exibidos na página de Veículos.</p>
-</div>
 
+
+<div class="container px-4 py-5" id="icon-grid">
+  <h2 class="pb-2 border-bottom">Inclusão de Veículos</h2>
+  <br/>
 
 <div class="container">
   <?php 
@@ -129,10 +135,23 @@ require_once "header_inc.php"; ?>
       <label for="fotoVeiculo">Foto do Veículo:</label>
       <input type="file" accept="image/*" class="form-control" id="fotoVeiculo" name="fotoVeiculo">
     </div>
-    <br />    
-    <button type="submit" class="btn btn-primary mb-2" name="enviar">Enviar</button>
+    <br />
+
+    <div class="form-group">
+      <label for="tipoVeiculo">Tipo:</label>
+      <select class="form-select" id="tipoVeiculo" name="tipoVeiculo" value="<?= $tipo; ?>">
+        <option selected="">Selecione...</option>
+        <option value="Novo">Novo</option>
+        <option value="Seminovo">Seminovo</option>
+      </select>
+    </div>
+    <br>
+    <a href="Veiculo-list.php"><button type="button" class="btn btn-primary mb-2" name="voltar">Voltar</button></a>
+
+    <button type="submit" class="btn btn-success mb-2" name="enviar">Enviar</button>
     <a href="Veiculo-insert.php"><button type="button" class="btn btn-primary mb-2" name="limpar">Limpar</button></a>
   </form>
+</div>
 </div>
 
 

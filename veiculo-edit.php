@@ -91,11 +91,11 @@ if (isset($_POST["enviar"])) {
 require_once "header_inc.php"; ?>
 
 
-<div class="p-4 mb-4 bg-light">
-  <h1 class="display-5">Edição de Veículo</h1>
-  <hr class="my-3">
-  <p class="lead">Permite a Edição dos veiculos exibidos na página de veiculos.</p>
-</div>
+
+
+<div class="container px-4 py-5" id="icon-grid">
+  <h2 class="pb-2 border-bottom">Edição de Veículo</h2>
+  <br/>
 
 
 <div class="container">
@@ -156,9 +156,12 @@ require_once "header_inc.php"; ?>
       <input type="file" accept="image/*" class="form-control" id="imagemVeiculo" name="imagemVeiculo">
     </div>
     <br />
-    <button type="submit" class="btn btn-primary mb-2" name="enviar">Enviar</button>
+    <a href="veiculo-list.php"><button type="button" class="btn btn-primary mb-2" name="voltar">Voltar</button></a>
+
+    <button type="submit" class="btn btn-success mb-2" name="enviar">Enviar</button>
     <a href="veiculo-edit.php"><button type="button" class="btn btn-primary mb-2" name="limpar">Limpar</button></a>
   </form>
+</div>
 </div>
 
 
